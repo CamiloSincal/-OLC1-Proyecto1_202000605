@@ -29,7 +29,7 @@ parser code
 :} 
 
 terminal String PTCOMA,DPUNTOS,PARIZQ,PARDER,CORIZQ,CORDER,LLAVDER,LLAVIZQ,COMA,PUNTO,DECRANGO;
-terminal String EXCLAMACION,BARRA,COMILLAS,NUMERAL,DOLAR,PORC,AMPER,COMSIMPLE,MAYORQUE,MENORQUE,IGUAL,INTER,ACENTO,ORSIGN;
+terminal String EXCLAMACION,BARRA,COMILLAS,NUMERAL,DOLAR,PORC,AMPER,COMSIMPLE,MAYORQUE,MENORQUE,IGUAL,INTER,ACENTO,ORSIGN,GUIONB;
 terminal String IDENTIFICADOR;
 terminal String LETRA;
 terminal String MAS,MENOS,POR,DIVIDIDO;
@@ -44,6 +44,7 @@ non terminal deconjunto;
 non terminal valoresconjunto,listavalores;
 non terminal instruccion;
 non terminal signos;
+non terminal regex,terminos,unavar,multvar,decregex;
 non terminal Double expresion;
 
 
@@ -62,7 +63,7 @@ instrucciones ::=
 ; 
 
 instruccion ::= 
-   LLAVIZQ deconjunto LLAVDER
+   LLAVIZQ deconjunto decregex LLAVDER
 ;
 
 deconjunto ::=
@@ -72,20 +73,54 @@ deconjunto ::=
     | INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA {:System.out.println("ACEPTADA");:}
 ;
 
+decregex ::=
+      decregex IDENTIFICADOR ASIGN regex PTCOMA
+    | IDENTIFICADOR ASIGN regex PTCOMA
+;
+
+regex ::=
+        multvar regex regex
+    |   unavar regex
+    |   PARIZQ multvar regex regex PARDER
+    |   PARIZQ unavar regex PARDER
+    |   terminos
+    |   expresion
+;
+
+terminos ::=
+        IDENTIFICADOR
+    |   PARIZQ IDENTIFICADOR PARDER
+    |   GUIONB
+    |   PARIZQ GUIONB PARDER
+;
+
+unavar ::=
+        POR
+    |   MAS
+    |   INTER
+;
+
+multvar ::=
+        PUNTO
+    |   ORSIGN
+;
+
 valoresconjunto ::=
     expresion DECRANGO expresion
+    |signos DECRANGO signos
 ;
 
 listavalores ::=
       listavalores COMA expresion
     | expresion
+    | listavalores COMA signos
+    | signos
 ;
 
 expresion  ::= 
     ENTERO:a                               
  |  DECIMAL:a            
- |  LETRA:a
- |  signos:a                             
+ |  LETRA:a                      
 ;
         
 signos ::=

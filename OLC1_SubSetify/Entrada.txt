@@ -1,9 +1,16 @@
 {
-conj: letra -> a~c;
-CONJ: letra3 -> a~z;
+// CONJUNTOS
+CONJ: letra -> a~z;
+CONJ: letraMayus -> A~Z;
 CONJ: digito -> 0~9;
-CONJ: letra2 -> A~Z;
-CONJ: digitos -> 0,2,4,6,8;
-CONJ: letra5 -> A,b,C,d;
-CONJ: signos -> !~&;
+CONJ: bool -> 0,1;
+CONJ: op -> *~/;
+
+//expresiones
+nombre -> +..(letraMayus)*(letra)_;
+int -> ..i n t;
+entero->.(digito)*(digito);
+binario-> .(bool)*(bool);
+compi -> .....c o m p i 1;
+
 }

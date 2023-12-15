@@ -48,6 +48,7 @@ MIN=[a-z]
 "?" {return new Symbol(sym.INTER,yyline,yychar, yytext());}
 "\`" {return new Symbol(sym.ACENTO,yyline,yychar, yytext());}
 "|" {return new Symbol(sym.ORSIGN,yyline,yychar, yytext());}
+"_" {return new Symbol(sym.GUIONB,yyline,yychar, yytext());}
 
 "," {return new Symbol(sym.COMA,yyline,yychar, yytext());}
 "." {return new Symbol(sym.PUNTO,yyline,yychar, yytext());}
