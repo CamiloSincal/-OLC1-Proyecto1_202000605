@@ -7,6 +7,9 @@
 package analizadores; 
 import java_cup.runtime.*;
 import Utils.ResultadoParser;
+import Utils.Nodo;
+import Utils.arbol;
+import Utils.cmdGraphviz;
 
 parser code
 {:
@@ -56,8 +59,9 @@ non terminal deconjunto;
 non terminal valoresconjunto,listavalores;
 non terminal instruccion;
 non terminal signos;
-non terminal regex,terminos,unavar,multvar,decregex;
-non terminal Double expresion;
+non terminal terminos,unavar,multvar,decregex;
+non terminal Nodo regex;
+non terminal expresion;
 
 
 precedence left MAS,MENOS;
@@ -86,36 +90,81 @@ deconjunto ::=
 ;
 
 decregex ::=
-      decregex IDENTIFICADOR ASIGN regex PTCOMA
-    | IDENTIFICADOR ASIGN regex PTCOMA
+      decregex IDENTIFICADOR ASIGN regex:a PTCOMA {:
+                                                    arbol nuevo_arbol = new arbol();
+                                                    nuevo_arbol.raiz = a;
+                                                    nuevo_arbol.generarDot(nuevo_arbol.raiz);
+                                                    :}
+    | IDENTIFICADOR ASIGN regex:a PTCOMA {:
+                                        arbol nuevo_arbol = new arbol();
+                                        nuevo_arbol.raiz = a;
+                                        nuevo_arbol.generarDot(nuevo_arbol.raiz);
+                                        :}
 ;
 
 regex ::=
-        multvar regex regex
-    |   unavar regex
-    |   PARIZQ multvar regex regex PARDER
-    |   PARIZQ unavar regex PARDER
-    |   terminos
-    |   expresion
-    |   COMILLAS signos COMILLAS
+        multvar:a regex:b regex:c {:
+                                Nodo nuevo_nodo = new Nodo(String.valueOf(a));
+                                Nodo hijo_izquierdo = b;
+                                Nodo hijo_derecho = c;
+
+                                nuevo_nodo.izquierdo = hijo_izquierdo;
+                                nuevo_nodo.derecho = hijo_derecho;
+                                RESULT = nuevo_nodo;
+                              :}
+    |   unavar:a regex:b{:
+                                Nodo nuevo_nodo = new Nodo(String.valueOf(a));
+                                Nodo hijo_derecho = b;
+                                
+                                nuevo_nodo.derecho = hijo_derecho;
+                                RESULT = nuevo_nodo;
+                    :}
+    |   PARIZQ multvar:a regex:b regex:c PARDER{:
+                                Nodo nuevo_nodo = new Nodo(String.valueOf(a));
+                                Nodo hijo_izquierdo = b;
+                                Nodo hijo_derecho = c;
+
+                                nuevo_nodo.izquierdo = hijo_izquierdo;
+                                nuevo_nodo.derecho = hijo_derecho;
+                                RESULT = nuevo_nodo;
+                              :}
+    |   PARIZQ unavar:a regex:b PARDER{:
+                                Nodo nuevo_nodo = new Nodo(String.valueOf(a));
+                                Nodo hijo_derecho = b;
+                                
+                                nuevo_nodo.derecho = hijo_derecho;
+                                RESULT = nuevo_nodo;
+                    :}
+    |   terminos:a {:
+                    Nodo nuevo_nodo = new Nodo(String.valueOf(a));
+                    RESULT = nuevo_nodo;
+                :}
+    |   expresion:a {:
+                    Nodo nuevo_nodo = new Nodo(String.valueOf(a));
+                    RESULT = nuevo_nodo;
+                :}
+    |   COMILLAS signos:a COMILLAS{:
+                                    Nodo nuevo_nodo = new Nodo(String.valueOf(a));
+                                    RESULT = nuevo_nodo;
+                                :}
 ;
 
 terminos ::=
-        IDENTIFICADOR
-    |   PARIZQ IDENTIFICADOR PARDER
-    |   GUIONB
-    |   PARIZQ GUIONB PARDER
+        IDENTIFICADOR:a {:RESULT = a;:}
+    |   PARIZQ IDENTIFICADOR:a PARDER {:RESULT = a;:}
+    |   GUIONB:a {:RESULT = a;:}
+    |   PARIZQ GUIONB:a PARDER {:RESULT = a;:}
 ;
 
 unavar ::=
-        POR
-    |   MAS
-    |   INTER
+        POR:a {:RESULT = a;:}
+    |   MAS:a {:RESULT = a;:}
+    |   INTER:a {:RESULT = a;:}
 ;
 
 multvar ::=
-        PUNTO
-    |   ORSIGN
+        PUNTO:a {:RESULT = a;:}
+    |   ORSIGN:a {:RESULT = a;:}
 ;
 
 valoresconjunto ::=
@@ -131,35 +180,35 @@ listavalores ::=
 ;
 
 expresion  ::= 
-    ENTERO:a                               
- |  DECIMAL:a            
- |  LETRA:a                      
+    ENTERO:a {:RESULT = a;:}                               
+ |  DECIMAL:a {:RESULT = a;:}            
+ |  LETRA:a {:RESULT = a;:}                      
 ;
         
 signos ::=
-    EXCLAMACION
- |  COMILLAS
- |  NUMERAL
- |  DOLAR
- |  PORC
- |  AMPER
- |  COMSIMPLE
- |  PARIZQ
- |  PARDER
- |  POR
- |  MAS
- |  COMA
- |  MENOS
- |  PUNTO
- |  BARRA
- |  DPUNTOS
- |  PTCOMA
- |  MENORQUE
- |  MAYORQUE
- |  IGUAL
- |  INTER
- |  ACENTO
- |  ORSIGN
- |  LLAVIZQ
- |  LLAVDER
+    EXCLAMACION:a {:RESULT = a;:}   
+ |  COMILLAS:a {:RESULT = a;:}   
+ |  NUMERAL:a {:RESULT = a;:}   
+ |  DOLAR:a {:RESULT = a;:}   
+ |  PORC:a {:RESULT = a;:}   
+ |  AMPER:a {:RESULT = a;:}   
+ |  COMSIMPLE:a {:RESULT = a;:}   
+ |  PARIZQ:a {:RESULT = a;:}   
+ |  PARDER:a {:RESULT = a;:}   
+ |  POR:a {:RESULT = a;:}   
+ |  MAS:a {:RESULT = a;:}   
+ |  COMA:a {:RESULT = a;:}   
+ |  MENOS:a {:RESULT = a;:}   
+ |  PUNTO:a {:RESULT = a;:}   
+ |  BARRA:a {:RESULT = a;:}   
+ |  DPUNTOS:a {:RESULT = a;:}   
+ |  PTCOMA:a {:RESULT = a;:}   
+ |  MENORQUE:a {:RESULT = a;:}   
+ |  MAYORQUE:a {:RESULT = a;:}   
+ |  IGUAL:a {:RESULT = a;:}   
+ |  INTER:a {:RESULT = a;:}   
+ |  ACENTO:a {:RESULT = a;:}   
+ |  ORSIGN:a {:RESULT = a;:}   
+ |  LLAVIZQ:a {:RESULT = a;:}   
+ |  LLAVDER:a {:RESULT = a;:}   
 ;
