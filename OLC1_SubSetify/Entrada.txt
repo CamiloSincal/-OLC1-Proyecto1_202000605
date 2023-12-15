@@ -1,5 +1,9 @@
-Evaluar[1+1];
-Evaluar[1+1*2];
-Evaluar[-(1+1*6/3-5+7)];
-Evaluar[-(1+1*6/3-5+1*-2)];
-Evaluar[-(1+1)];
+{
+conj: letra -> a~c;
+CONJ: letra3 -> a~z;
+CONJ: digito -> 0~9;
+CONJ: letra2 -> A~Z;
+CONJ: digitos -> 0,2,4,6,8;
+CONJ: letra5 -> A,b,C,d;
+CONJ: signos -> !~&;
+}

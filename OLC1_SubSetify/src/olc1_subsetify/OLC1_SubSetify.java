@@ -13,7 +13,7 @@ public class OLC1_SubSetify {
      * @param args argumentos de la linea de comando
      */
     public static void main(String[] args) {
-        interpretar("entrada.txt");
+        interpretar("Entrada.txt");
     }
     /**
      * Método que interpreta el contenido del archivo que se encuentra en el path

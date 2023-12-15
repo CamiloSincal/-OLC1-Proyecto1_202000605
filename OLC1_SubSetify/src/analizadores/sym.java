@@ -8,29 +8,75 @@ package analizadores;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int DECIMAL = 12;
-  public static final int MENOS = 8;
-  public static final int CORIZQ = 5;
-  public static final int UMENOS = 13;
-  public static final int ENTERO = 11;
-  public static final int POR = 9;
-  public static final int CORDER = 6;
-  public static final int PTCOMA = 2;
-  public static final int DIVIDIDO = 10;
+  public static final int POR = 31;
+  public static final int ENTERO = 33;
+  public static final int AMPER = 19;
+  public static final int PORC = 18;
+  public static final int INICONJUNTO = 37;
+  public static final int ACENTO = 25;
+  public static final int LLAVIZQ = 9;
+  public static final int DECRANGO = 12;
+  public static final int IDENTIFICADOR = 27;
+  public static final int MAYORQUE = 21;
+  public static final int IGUAL = 23;
+  public static final int CORDER = 7;
+  public static final int DIVIDIDO = 32;
+  public static final int LETRA = 28;
+  public static final int UMENOS = 35;
+  public static final int EXCLAMACION = 13;
+  public static final int REVALUAR = 36;
   public static final int EOF = 0;
-  public static final int MAS = 7;
-  public static final int PARIZQ = 3;
+  public static final int PARIZQ = 4;
+  public static final int DECIMAL = 34;
+  public static final int COMILLAS = 15;
   public static final int error = 1;
-  public static final int PARDER = 4;
-  public static final int REVALUAR = 14;
+  public static final int COMA = 10;
+  public static final int MENOS = 30;
+  public static final int COMSIMPLE = 20;
+  public static final int MENORQUE = 22;
+  public static final int LLAVDER = 8;
+  public static final int BARRA = 14;
+  public static final int PUNTO = 11;
+  public static final int NUMERAL = 16;
+  public static final int ASIGN = 38;
+  public static final int DPUNTOS = 3;
+  public static final int PTCOMA = 2;
+  public static final int PARDER = 5;
+  public static final int CORIZQ = 6;
+  public static final int INTER = 24;
+  public static final int DOLAR = 17;
+  public static final int ORSIGN = 26;
+  public static final int MAS = 29;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
   "PTCOMA",
+  "DPUNTOS",
   "PARIZQ",
   "PARDER",
   "CORIZQ",
   "CORDER",
+  "LLAVDER",
+  "LLAVIZQ",
+  "COMA",
+  "PUNTO",
+  "DECRANGO",
+  "EXCLAMACION",
+  "BARRA",
+  "COMILLAS",
+  "NUMERAL",
+  "DOLAR",
+  "PORC",
+  "AMPER",
+  "COMSIMPLE",
+  "MAYORQUE",
+  "MENORQUE",
+  "IGUAL",
+  "INTER",
+  "ACENTO",
+  "ORSIGN",
+  "IDENTIFICADOR",
+  "LETRA",
   "MAS",
   "MENOS",
   "POR",
@@ -38,7 +84,9 @@ public class sym {
   "ENTERO",
   "DECIMAL",
   "UMENOS",
-  "REVALUAR"
+  "REVALUAR",
+  "INICONJUNTO",
+  "ASIGN"
   };
 }
 

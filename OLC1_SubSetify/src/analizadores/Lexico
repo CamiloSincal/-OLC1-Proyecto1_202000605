@@ -16,19 +16,51 @@ import java_cup.runtime.Symbol;
 %init} 
 
 BLANCOS=[ \r\t]+
+
 D=[0-9]+
 DD=[0-9]+("."[  |0-9]+)?
+CM = \/\/.*
+CMM="<!"([^/!>]|[^!>]|[^/!>])*"!>"
+ID=([A-Z]|[a-z]|"_"|[0-9])+
+MAY=[A-Z]
+MIN=[a-z]
 
 %%
 
-"Evaluar" {return new Symbol(sym.REVALUAR,yyline,yychar,
+"CONJ"  {return new Symbol(sym.INICONJUNTO,yyline,yychar,
                              yytext());} 
 
+
+"->"  {return new Symbol(sym.ASIGN,yyline,yychar,
+                             yytext());} 
+
+"!" {return new Symbol(sym.EXCLAMACION,yyline,yychar, yytext());}
+"\"" {return new Symbol(sym.COMILLAS,yyline,yychar, yytext());}
+"#" {return new Symbol(sym.NUMERAL,yyline,yychar, yytext());}
+"$" {return new Symbol(sym.DOLAR,yyline,yychar, yytext());}
+"%" {return new Symbol(sym.PORC,yyline,yychar, yytext());}
+"&" {return new Symbol(sym.AMPER,yyline,yychar, yytext());}
+"\'" {return new Symbol(sym.COMSIMPLE,yyline,yychar, yytext());}
+"/" {return new Symbol(sym.BARRA,yyline,yychar, yytext());}
+"<" {return new Symbol(sym.MENORQUE,yyline,yychar, yytext());}
+">" {return new Symbol(sym.MAYORQUE,yyline,yychar, yytext());}
+"=" {return new Symbol(sym.IGUAL,yyline,yychar, yytext());}
+"?" {return new Symbol(sym.INTER,yyline,yychar, yytext());}
+"\`" {return new Symbol(sym.ACENTO,yyline,yychar, yytext());}
+"|" {return new Symbol(sym.ORSIGN,yyline,yychar, yytext());}
+
+"," {return new Symbol(sym.COMA,yyline,yychar, yytext());}
+"." {return new Symbol(sym.PUNTO,yyline,yychar, yytext());}
+"~" {return new Symbol(sym.DECRANGO,yyline,yychar, yytext());}
+":" {return new Symbol(sym.DPUNTOS,yyline,yychar, yytext());} 
 ";" {return new Symbol(sym.PTCOMA,yyline,yychar, yytext());} 
 "(" {return new Symbol(sym.PARIZQ,yyline,yychar, yytext());} 
 ")" {return new Symbol(sym.PARDER,yyline,yychar, yytext());} 
 "[" {return new Symbol(sym.CORIZQ,yyline,yychar, yytext());} 
 "]" {return new Symbol(sym.CORDER,yyline,yychar, yytext());} 
+"{" {return new Symbol(sym.LLAVIZQ,yyline,yychar, yytext());} 
+"}" {return new Symbol(sym.LLAVDER,yyline,yychar, yytext());} 
+
 
 "+" {return new Symbol(sym.MAS,yyline,yychar, yytext());} 
 "-" {return new Symbol(sym.MENOS,yyline,yychar, yytext());} 
@@ -37,9 +69,13 @@ DD=[0-9]+("."[  |0-9]+)?
 
 \n {yychar=1;}
 
-{BLANCOS} {} 
+{BLANCOS} {}
+{CMM} {}
+{CM} {}
 {D} {return new Symbol(sym.ENTERO,yyline,yychar, yytext());} 
-{DD} {return new Symbol(sym.DECIMAL,yyline,yychar, yytext());} 
+{DD} {return new Symbol(sym.DECIMAL,yyline,yychar, yytext());}
+{MAY}|{MIN} {return new Symbol(sym.LETRA,yyline,yychar, yytext());}
+{ID} {return new Symbol(sym.IDENTIFICADOR,yyline,yychar, yytext());} 
 
 . {
     System.out.println("Este es un error lexico: "+yytext()+

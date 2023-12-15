@@ -28,17 +28,24 @@ parser code
     }  
 :} 
 
-terminal String PTCOMA,PARIZQ,PARDER,CORIZQ,CORDER;
+terminal String PTCOMA,DPUNTOS,PARIZQ,PARDER,CORIZQ,CORDER,LLAVDER,LLAVIZQ,COMA,PUNTO,DECRANGO;
+terminal String EXCLAMACION,BARRA,COMILLAS,NUMERAL,DOLAR,PORC,AMPER,COMSIMPLE,MAYORQUE,MENORQUE,IGUAL,INTER,ACENTO,ORSIGN;
+terminal String IDENTIFICADOR;
+terminal String LETRA;
 terminal String MAS,MENOS,POR,DIVIDIDO;
 terminal String ENTERO;
 terminal String DECIMAL;
 terminal String UMENOS;
-terminal String REVALUAR;
+terminal String REVALUAR,INICONJUNTO,ASIGN;
 
 non terminal ini;
 non terminal instrucciones;
+non terminal deconjunto;
+non terminal valoresconjunto,listavalores;
 non terminal instruccion;
+non terminal signos;
 non terminal Double expresion;
+
 
 precedence left MAS,MENOS;
 precedence left POR,DIVIDIDO;
@@ -55,16 +62,56 @@ instrucciones ::=
 ; 
 
 instruccion ::= 
-   REVALUAR CORIZQ expresion:a CORDER PTCOMA{:System.out.println("El valor de la expresión es: "+a);:}
+   LLAVIZQ deconjunto LLAVDER
+;
+
+deconjunto ::=
+      deconjunto INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN valoresconjunto PTCOMA {:System.out.println("ACEPTADA");:}
+    | deconjunto INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA {:System.out.println("ACEPTADA");:}
+    | INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN valoresconjunto PTCOMA {:System.out.println("ACEPTADA");:}
+    | INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA {:System.out.println("ACEPTADA");:}
+;
+
+valoresconjunto ::=
+    expresion DECRANGO expresion
+;
+
+listavalores ::=
+      listavalores COMA expresion
+    | expresion
 ;
 
 expresion  ::= 
-    MENOS expresion:a                      {:RESULT=a*-1;:}%prec UMENOS     
- |  expresion:a MAS        expresion:b     {:RESULT=a+b;:}
- |  expresion:a MENOS      expresion:b     {:RESULT=a-b;:}
- |  expresion:a POR        expresion:b     {:RESULT=a*b;:}
- |  expresion:a DIVIDIDO   expresion:b     {:RESULT=a/b;:}
- |  ENTERO:a                               {:RESULT=new Double(a);:}
- |  DECIMAL:a                              {:RESULT=new Double(a);:}
- |  PARIZQ expresion:a PARDER              {:RESULT=a;:}
+    ENTERO:a                               
+ |  DECIMAL:a            
+ |  LETRA:a
+ |  signos:a                             
+;
+        
+signos ::=
+    EXCLAMACION
+ |  COMILLAS
+ |  NUMERAL
+ |  DOLAR
+ |  PORC
+ |  AMPER
+ |  COMSIMPLE
+ |  PARIZQ
+ |  PARDER
+ |  POR
+ |  MAS
+ |  COMA
+ |  MENOS
+ |  PUNTO
+ |  BARRA
+ |  DPUNTOS
+ |  PTCOMA
+ |  MENORQUE
+ |  MAYORQUE
+ |  IGUAL
+ |  INTER
+ |  ACENTO
+ |  ORSIGN
+ |  LLAVIZQ
+ |  LLAVDER
 ;
