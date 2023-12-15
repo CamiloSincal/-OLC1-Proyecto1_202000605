@@ -6,15 +6,24 @@
 
 package analizadores; 
 import java_cup.runtime.*;
+import Utils.ResultadoParser;
 
-parser code 
+parser code
 {:
+    private ResultadoParser resultadoParser;
+    
+    public void setResultadoParser(ResultadoParser resultadoParser){
+        this.resultadoParser = resultadoParser;
+    }
+
     /**
      * Método al que se llama automáticamente ante algún error sintactico.
      **/ 
     public void syntax_error(Symbol s){ 
         System.out.println("Error Sintáctico en la Línea " + (s.left) +
-        " Columna "+s.right+ ". No se esperaba este componente: " +s.value+"."); 
+        " Columna "+s.right+ ". No se esperaba este componente: " +s.value+".");
+        resultadoParser.setMensaje("Error Sintáctico en la Línea " + (s.left) +
+        " Columna "+s.right+ ". No se esperaba este componente: " +s.value+"\n");
     } 
 
     /**
@@ -25,6 +34,9 @@ parser code
         System.out.println("Error síntactico irrecuperable en la Línea " + 
         (s.left)+ " Columna "+s.right+". Componente " + s.value + 
         " no reconocido."); 
+        resultadoParser.setMensaje("Error síntactico irrecuperable en la Línea " + 
+        (s.left)+ " Columna "+s.right+". Componente " + s.value + 
+        " no reconocido."+"\n");
     }  
 :} 
 
@@ -54,7 +66,7 @@ precedence right UMENOS;
 
 start with ini; 
 
-ini::=instrucciones;
+ini::=instrucciones{:resultadoParser.setMensaje("COMPILADO CORRECTAMENTE :)");:};
 
 instrucciones ::= 
    instruccion instrucciones
@@ -67,10 +79,10 @@ instruccion ::=
 ;
 
 deconjunto ::=
-      deconjunto INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN valoresconjunto PTCOMA {:System.out.println("ACEPTADA");:}
-    | deconjunto INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA {:System.out.println("ACEPTADA");:}
-    | INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN valoresconjunto PTCOMA {:System.out.println("ACEPTADA");:}
-    | INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA {:System.out.println("ACEPTADA");:}
+      deconjunto INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN valoresconjunto PTCOMA {::}
+    | deconjunto INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA {::}
+    | INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN valoresconjunto PTCOMA {::}
+    | INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA {::}
 ;
 
 decregex ::=
@@ -85,6 +97,7 @@ regex ::=
     |   PARIZQ unavar regex PARDER
     |   terminos
     |   expresion
+    |   COMILLAS signos COMILLAS
 ;
 
 terminos ::=

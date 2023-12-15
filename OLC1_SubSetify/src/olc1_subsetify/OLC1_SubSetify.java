@@ -2,33 +2,14 @@
 package olc1_subsetify;
 
 import java.io.FileInputStream;
+import UI.Principal;
 
-/**
- * Clase principal de la aplicación
- * @author Erick
- */
 public class OLC1_SubSetify {
 
-    /**
-     * @param args argumentos de la linea de comando
-     */
     public static void main(String[] args) {
-        interpretar("Entrada.txt");
+        Principal p = new Principal();
+        p.setVisible(true);
     }
-    /**
-     * Método que interpreta el contenido del archivo que se encuentra en el path
-     * que recibe como parámentro
-     * @param path ruta del archivo a interpretar
-     */
-    private static void interpretar(String path) {
-        analizadores.Sintactico pars;
-        try {
-            pars=new analizadores.Sintactico(new analizadores.Lexico(new FileInputStream(path)));
-            pars.parse();        
-        } catch (Exception ex) {
-            System.out.println("Error fatal en compilación de entrada.");
-            System.out.println("Causa: "+ex.getCause());
-        } 
-    }
+
     
 }
