@@ -7,6 +7,8 @@ public class arbol {
     public Nodo raiz;    
     public String nombreFile="";
     public String contenido="digraph G{\n";
+    public String act_ubicacion = System.getProperty("user.dir");
+    
     public arbol(){
         raiz = null;
     }
@@ -33,6 +35,7 @@ public class arbol {
     }
     
     public void generarDot(Nodo nodo){
+        
         cmdGraphviz g = new cmdGraphviz();
         nombreFile = "N"+nodo.hashCode();
         
@@ -40,12 +43,12 @@ public class arbol {
         recorridoInOrden2(nodo);
         contenido+="}";
         escribirDot(contenido);
-        g.generarGrafico("C:\\Users\\csinc\\Desktop\\PROYECTOS\\-OLC1-Proyecto1_202000605\\OLC1_SubSetify\\dots\\"+nombreFile+".dot", "C:\\Users\\csinc\\Desktop\\PROYECTOS\\-OLC1-Proyecto1_202000605\\OLC1_SubSetify\\imagenes_dots\\"+nombreFile+".png");
+        g.generarGrafico(act_ubicacion+"\\dots\\"+nombreFile+".dot", act_ubicacion+"\\imagenes_dots\\"+nombreFile+".png");
     }
     
     public void escribirDot(String contenido){
         try{
-            File archivo = new File("C:\\Users\\csinc\\Desktop\\PROYECTOS\\-OLC1-Proyecto1_202000605\\OLC1_SubSetify\\dots\\"+nombreFile+".dot");
+            File archivo = new File(act_ubicacion+"\\dots\\"+nombreFile+".dot");
             FileWriter escribir = new FileWriter(archivo,true);
             escribir.write(contenido);
             escribir.close();

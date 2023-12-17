@@ -7,8 +7,11 @@ package UI;
 import Utils.Analizador;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -18,6 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class Principal extends javax.swing.JFrame {
     private Analizador a;
+    private String file_route;
     /**
      * Creates new form Principal
      */
@@ -42,6 +46,8 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         consola = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
+        saveButton = new javax.swing.JButton();
+        guardarcomoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +73,20 @@ public class Principal extends javax.swing.JFrame {
         consola.setRows(5);
         jScrollPane2.setViewportView(consola);
 
+        saveButton.setText("GUARDAR");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        guardarcomoButton.setText("GUARDAR COMO");
+        guardarcomoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarcomoButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,7 +97,11 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botonCargar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonEjecutar))
+                        .addComponent(botonEjecutar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(guardarcomoButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
                     .addComponent(jScrollPane2))
@@ -89,7 +113,9 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCargar)
-                    .addComponent(botonEjecutar))
+                    .addComponent(botonEjecutar)
+                    .addComponent(saveButton)
+                    .addComponent(guardarcomoButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -107,6 +133,7 @@ public class Principal extends javax.swing.JFrame {
         JFileChooser sf = new JFileChooser();
         sf.showOpenDialog(null);
         File archivo = sf.getSelectedFile();
+        file_route = archivo.getAbsolutePath();
         try{
             FileReader fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
@@ -116,7 +143,6 @@ public class Principal extends javax.swing.JFrame {
                 texto+=linea+"\n";
             }
             textoEntrada.setText(texto);
-            JOptionPane.showMessageDialog(null,"ARCHIVO LEÍDO CON EXITO");
         }catch(Exception e){
 
         }
@@ -126,6 +152,30 @@ public class Principal extends javax.swing.JFrame {
        
         consola.setText(a.interpretar(textoEntrada.getText()));
     }//GEN-LAST:event_botonEjecutarActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(file_route))){
+            writer.write(textoEntrada.getText());
+            JOptionPane.showMessageDialog(null,"ARCHIVO GUARDADO CORRECTAMENTE");
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void guardarcomoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarcomoButtonActionPerformed
+        JFileChooser cuadroD = new JFileChooser();
+        int result = cuadroD.showSaveDialog(this);
+        
+        if(result == JFileChooser.APPROVE_OPTION){
+            File seleccion = cuadroD.getSelectedFile();
+            try(BufferedWriter writer = new BufferedWriter(new FileWriter(seleccion))){
+                writer.write(textoEntrada.getText());
+                JOptionPane.showMessageDialog(null,"ARCHIVO GUARDADO CORRECTAMENTE");
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_guardarcomoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,9 +216,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton botonCargar;
     private javax.swing.JButton botonEjecutar;
     private javax.swing.JTextArea consola;
+    private javax.swing.JButton guardarcomoButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton saveButton;
     private javax.swing.JTextArea textoEntrada;
     // End of variables declaration//GEN-END:variables
 }
