@@ -1,5 +1,6 @@
 package analizadores;
 import java_cup.runtime.Symbol; 
+import java.util.HashMap;
 
 
 public class Lexico implements java_cup.runtime.Scanner {
@@ -364,6 +365,12 @@ public class Lexico implements java_cup.runtime.Scanner {
 						{
     System.out.println("Este es un error lexico: "+yytext()+
     ", en la linea: "+yyline+", en la columna: "+yychar);
+    HashMap<String,String> nuevoError = new HashMap<>();
+    nuevoError.put("lexema",String.valueOf(yytext()));
+    nuevoError.put("descripcion","Error Léxico");
+    nuevoError.put("linea",String.valueOf(yyline));
+    nuevoError.put("columna",String.valueOf(yychar));
+    Utils.Reportes.addError(nuevoError);
 }
 					case -12:
 						break;
@@ -493,6 +500,12 @@ public class Lexico implements java_cup.runtime.Scanner {
 						{
     System.out.println("Este es un error lexico: "+yytext()+
     ", en la linea: "+yyline+", en la columna: "+yychar);
+    HashMap<String,String> nuevoError = new HashMap<>();
+    nuevoError.put("lexema",String.valueOf(yytext()));
+    nuevoError.put("descripcion","Error Léxico");
+    nuevoError.put("linea",String.valueOf(yyline));
+    nuevoError.put("columna",String.valueOf(yychar));
+    Utils.Reportes.addError(nuevoError);
 }
 					case -43:
 						break;

@@ -6,10 +6,12 @@
 package analizadores;
 
 import java_cup.runtime.*;
+import java.util.HashMap;
 import Utils.ResultadoParser;
 import Utils.Nodo;
 import Utils.arbol;
 import Utils.cmdGraphviz;
+import Utils.Reportes;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -392,7 +394,16 @@ class CUP$Sintactico$actions {
           case 5: // instruccion ::= LLAVIZQ deconjunto decregex LLAVDER 
             {
               Object RESULT =null;
-
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).value;
+		int t2left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t2right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t2 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
+		
+                                            Utils.Reportes.addToken(String.valueOf(t1),"LLAVIZQ",String.valueOf(t1left),String.valueOf(t1right));
+                                            Utils.Reportes.addToken(String.valueOf(t2),"LLAVDER",String.valueOf(t2left),String.valueOf(t2right));
+                                        
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("instruccion",5, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -401,7 +412,28 @@ class CUP$Sintactico$actions {
           case 6: // deconjunto ::= deconjunto INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN valoresconjunto PTCOMA 
             {
               Object RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).value;
+		int t2left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).left;
+		int t2right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).right;
+		String t2 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).value;
+		int t3left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).left;
+		int t3right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).right;
+		String t3 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).value;
+		int t4left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).left;
+		int t4right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).right;
+		String t4 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).value;
+		int t5left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t5right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t5 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		
+                                                                                    Utils.Reportes.addToken(String.valueOf(t1),"INICONJUNTO",String.valueOf(t1left),String.valueOf(t1right));
+                                                                                    Utils.Reportes.addToken(String.valueOf(t2),"DPUNTOS",String.valueOf(t2left),String.valueOf(t2right));
+                                                                                    Utils.Reportes.addToken(String.valueOf(t3),"IDENTIFICADOR",String.valueOf(t3left),String.valueOf(t3right));
+                                                                                    Utils.Reportes.addToken(String.valueOf(t4),"ASIGN",String.valueOf(t4left),String.valueOf(t4right));
+                                                                                    Utils.Reportes.addToken(String.valueOf(t5),"PTCOMA",String.valueOf(t5left),String.valueOf(t5right));
+                                                                                 
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("deconjunto",2, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-6)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -410,7 +442,28 @@ class CUP$Sintactico$actions {
           case 7: // deconjunto ::= deconjunto INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA 
             {
               Object RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).value;
+		int t2left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).left;
+		int t2right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).right;
+		String t2 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).value;
+		int t3left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).left;
+		int t3right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).right;
+		String t3 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).value;
+		int t4left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).left;
+		int t4right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).right;
+		String t4 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).value;
+		int t5left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t5right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t5 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		
+                                                                                Utils.Reportes.addToken(String.valueOf(t1),"INICONJUNTO",String.valueOf(t1left),String.valueOf(t1right));
+                                                                                Utils.Reportes.addToken(String.valueOf(t2),"DPUNTOS",String.valueOf(t2left),String.valueOf(t2right));
+                                                                                Utils.Reportes.addToken(String.valueOf(t3),"IDENTIFICADOR",String.valueOf(t3left),String.valueOf(t3right));
+                                                                                Utils.Reportes.addToken(String.valueOf(t4),"ASIGN",String.valueOf(t4left),String.valueOf(t4right));
+                                                                                Utils.Reportes.addToken(String.valueOf(t5),"PTCOMA",String.valueOf(t5left),String.valueOf(t5right));
+                                                                             
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("deconjunto",2, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-6)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -419,7 +472,28 @@ class CUP$Sintactico$actions {
           case 8: // deconjunto ::= INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN valoresconjunto PTCOMA 
             {
               Object RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).value;
+		int t2left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).left;
+		int t2right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).right;
+		String t2 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).value;
+		int t3left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).left;
+		int t3right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).right;
+		String t3 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).value;
+		int t4left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).left;
+		int t4right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).right;
+		String t4 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).value;
+		int t5left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t5right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t5 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		
+                                                                    Utils.Reportes.addToken(String.valueOf(t1),"INICONJUNTO",String.valueOf(t1left),String.valueOf(t1right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t2),"DPUNTOS",String.valueOf(t2left),String.valueOf(t2right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t3),"IDENTIFICADOR",String.valueOf(t3left),String.valueOf(t3right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t4),"ASIGN",String.valueOf(t4left),String.valueOf(t4right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t5),"PTCOMA",String.valueOf(t5left),String.valueOf(t5right));
+                                                                 
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("deconjunto",2, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -428,7 +502,28 @@ class CUP$Sintactico$actions {
           case 9: // deconjunto ::= INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA 
             {
               Object RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)).value;
+		int t2left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).left;
+		int t2right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).right;
+		String t2 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).value;
+		int t3left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).left;
+		int t3right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).right;
+		String t3 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).value;
+		int t4left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).left;
+		int t4right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).right;
+		String t4 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).value;
+		int t5left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t5right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t5 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		
+                                                                    Utils.Reportes.addToken(String.valueOf(t1),"INICONJUNTO",String.valueOf(t1left),String.valueOf(t1right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t2),"DPUNTOS",String.valueOf(t2left),String.valueOf(t2right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t3),"IDENTIFICADOR",String.valueOf(t3left),String.valueOf(t3right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t4),"ASIGN",String.valueOf(t4left),String.valueOf(t4right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t5),"PTCOMA",String.valueOf(t5left),String.valueOf(t5right));
+                                                                 
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("deconjunto",2, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-5)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -437,10 +532,25 @@ class CUP$Sintactico$actions {
           case 10: // decregex ::= decregex IDENTIFICADOR ASIGN regex PTCOMA 
             {
               Object RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).value;
+		int t2left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).left;
+		int t2right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).right;
+		String t2 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).value;
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
 		Nodo a = (Nodo)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		int t3left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t3right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t3 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		
+                                                    //TOKENS A REPORTE
+                                                    Utils.Reportes.addToken(String.valueOf(t1),"IDENTIFICADOR",String.valueOf(t1left),String.valueOf(t1right));
+                                                    Utils.Reportes.addToken(String.valueOf(t2),"ASIGN",String.valueOf(t2left),String.valueOf(t2right));
+                                                    Utils.Reportes.addToken(String.valueOf(t3),"PTCOMA",String.valueOf(t3left),String.valueOf(t3right));
+                                                                    
+                                                    //GENERACION DEL ÁRBOL DE LA EXPRESION REGULAR
                                                     arbol nuevo_arbol = new arbol();
                                                     nuevo_arbol.raiz = a;
                                                     nuevo_arbol.generarDot(nuevo_arbol.raiz);
@@ -453,10 +563,25 @@ class CUP$Sintactico$actions {
           case 11: // decregex ::= IDENTIFICADOR ASIGN regex PTCOMA 
             {
               Object RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).value;
+		int t2left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).left;
+		int t2right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).right;
+		String t2 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).value;
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
 		Nodo a = (Nodo)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		int t3left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t3right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t3 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		
+                                        //TOKENS A REPORTE
+                                        Utils.Reportes.addToken(String.valueOf(t1),"IDENTIFICADOR",String.valueOf(t1left),String.valueOf(t1right));
+                                        Utils.Reportes.addToken(String.valueOf(t2),"ASIGN",String.valueOf(t2left),String.valueOf(t2right));
+                                        Utils.Reportes.addToken(String.valueOf(t3),"PTCOMA",String.valueOf(t3left),String.valueOf(t3right));
+                                                                    
+                                        //GENERACION DEL ÁRBOL DE LA EXPRESION REGULAR
                                         arbol nuevo_arbol = new arbol();
                                         nuevo_arbol.raiz = a;
                                         nuevo_arbol.generarDot(nuevo_arbol.raiz);
@@ -516,6 +641,9 @@ class CUP$Sintactico$actions {
           case 14: // regex ::= PARIZQ multvar regex regex PARDER 
             {
               Nodo RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-4)).value;
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).value;
@@ -525,7 +653,13 @@ class CUP$Sintactico$actions {
 		int cleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
 		Nodo c = (Nodo)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		int t2left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t2right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t2 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		
+                                Utils.Reportes.addToken(String.valueOf(t1),"PARIZQ",String.valueOf(t1left),String.valueOf(t1right));
+                                Utils.Reportes.addToken(String.valueOf(t2),"PARDER",String.valueOf(t2left),String.valueOf(t2right));
+
                                 Nodo nuevo_nodo = new Nodo(String.valueOf(a));
                                 Nodo hijo_izquierdo = b;
                                 Nodo hijo_derecho = c;
@@ -542,13 +676,22 @@ class CUP$Sintactico$actions {
           case 15: // regex ::= PARIZQ unavar regex PARDER 
             {
               Nodo RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-3)).value;
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).value;
 		int bleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
 		Nodo b = (Nodo)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		int t2left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t2right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t2 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		
+                                Utils.Reportes.addToken(String.valueOf(t1),"PARIZQ",String.valueOf(t1left),String.valueOf(t1right));
+                                Utils.Reportes.addToken(String.valueOf(t2),"PARDER",String.valueOf(t2left),String.valueOf(t2right));
+
                                 Nodo nuevo_nodo = new Nodo(String.valueOf(a));
                                 Nodo hijo_derecho = b;
                                 
@@ -593,10 +736,19 @@ class CUP$Sintactico$actions {
           case 18: // regex ::= COMILLAS signos COMILLAS 
             {
               Nodo RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).value;
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
 		Object a = (Object)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		int t2left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t2right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t2 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		
+                                Utils.Reportes.addToken(String.valueOf(t1),"COMILLAS",String.valueOf(t1left),String.valueOf(t1right));
+                                Utils.Reportes.addToken(String.valueOf(t2),"COMILLAS",String.valueOf(t2left),String.valueOf(t2right));
+
                                     Nodo nuevo_nodo = new Nodo(String.valueOf(a));
                                     RESULT = nuevo_nodo;
                                 
@@ -611,7 +763,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"IDENTIFICADOR",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("terminos",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -620,10 +772,20 @@ class CUP$Sintactico$actions {
           case 20: // terminos ::= PARIZQ IDENTIFICADOR PARDER 
             {
               Object RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).value;
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		int t3left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t3right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t3 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		RESULT = a;
+                                Utils.Reportes.addToken(String.valueOf(t1),"PARIZQ",String.valueOf(t1left),String.valueOf(t1right));
+                                Utils.Reportes.addToken(String.valueOf(a),"IDENTIFICADOR",String.valueOf(aleft),String.valueOf(aright));
+                                Utils.Reportes.addToken(String.valueOf(t3),"PARDER",String.valueOf(t3left),String.valueOf(t3right));
+                                
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("terminos",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -635,7 +797,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"GUIONB",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("terminos",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -644,10 +806,20 @@ class CUP$Sintactico$actions {
           case 22: // terminos ::= PARIZQ GUIONB PARDER 
             {
               Object RESULT =null;
+		int t1left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).left;
+		int t1right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).right;
+		String t1 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)).value;
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		int t3left = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
+		int t3right = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
+		String t3 = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
 		RESULT = a;
+                                Utils.Reportes.addToken(String.valueOf(t1),"PARIZQ",String.valueOf(t1left),String.valueOf(t1right));
+                                Utils.Reportes.addToken(String.valueOf(a),"GUIONB",String.valueOf(aleft),String.valueOf(aright));
+                                Utils.Reportes.addToken(String.valueOf(t3),"PARDER",String.valueOf(t3left),String.valueOf(t3right));
+                                
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("terminos",7, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -659,7 +831,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"POR",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("unavar",8, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -671,7 +843,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"MAS",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("unavar",8, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -683,7 +855,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"INTER",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("unavar",8, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -695,7 +867,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PUNTO",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("multvar",9, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -707,7 +879,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"ORSIGN",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("multvar",9, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -716,7 +888,10 @@ class CUP$Sintactico$actions {
           case 28: // valoresconjunto ::= expresion DECRANGO expresion 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		Utils.Reportes.addToken(String.valueOf(a),"DECRANGO",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("valoresconjunto",3, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -725,7 +900,10 @@ class CUP$Sintactico$actions {
           case 29: // valoresconjunto ::= signos DECRANGO signos 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		Utils.Reportes.addToken(String.valueOf(a),"DECRANGO",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("valoresconjunto",3, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -734,7 +912,10 @@ class CUP$Sintactico$actions {
           case 30: // listavalores ::= listavalores COMA expresion 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		Utils.Reportes.addToken(String.valueOf(a),"COMA",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("listavalores",4, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -752,7 +933,10 @@ class CUP$Sintactico$actions {
           case 32: // listavalores ::= listavalores COMA signos 
             {
               Object RESULT =null;
-
+		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).left;
+		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).right;
+		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-1)).value;
+		Utils.Reportes.addToken(String.valueOf(a),"COMA",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("listavalores",4, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.elementAt(CUP$Sintactico$top-2)), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -773,7 +957,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"ENTERO",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("expresion",12, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -785,7 +969,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"DECIMAL",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("expresion",12, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -797,7 +981,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"LETRA",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("expresion",12, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -809,7 +993,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"EXCLAMACION",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -821,7 +1005,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"COMILLAS",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -833,7 +1017,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"NUMERAL",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -845,7 +1029,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"DOLAR",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -857,7 +1041,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PORC",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -869,7 +1053,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"AMPER",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -881,7 +1065,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"COMSIMPLE",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -893,7 +1077,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PARIZQ",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -905,7 +1089,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PARDER",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -917,7 +1101,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"POR",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -929,7 +1113,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"MAS",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -941,7 +1125,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"COMA",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -953,7 +1137,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"MENOS",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -965,7 +1149,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PUNTO",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -977,7 +1161,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"BARRA",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -989,7 +1173,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"DPUNTOS",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -1001,7 +1185,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PTCOMA",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -1013,7 +1197,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"MENORQUE",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -1025,7 +1209,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"MAYORQUE",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -1037,7 +1221,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"IGUAL",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -1049,7 +1233,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"INTER",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -1061,7 +1245,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"ACENTO",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -1073,7 +1257,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"ORSIGN",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -1085,7 +1269,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"LLAVIZQ",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;
@@ -1097,7 +1281,7 @@ class CUP$Sintactico$actions {
 		int aleft = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).left;
 		int aright = ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()).right;
 		String a = (String)((java_cup.runtime.Symbol) CUP$Sintactico$stack.peek()).value;
-		RESULT = a;
+		RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"LLAVDER",String.valueOf(aleft),String.valueOf(aright));
               CUP$Sintactico$result = parser.getSymbolFactory().newSymbol("signos",6, ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), ((java_cup.runtime.Symbol)CUP$Sintactico$stack.peek()), RESULT);
             }
           return CUP$Sintactico$result;

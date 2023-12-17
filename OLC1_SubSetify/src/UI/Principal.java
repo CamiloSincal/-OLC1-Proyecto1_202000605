@@ -48,6 +48,7 @@ public class Principal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         saveButton = new javax.swing.JButton();
         guardarcomoButton = new javax.swing.JButton();
+        reporteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +88,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        reporteButton.setText("REPORTES");
+        reporteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reporteButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,7 +109,9 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(guardarcomoButton))
+                        .addComponent(guardarcomoButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(reporteButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
                     .addComponent(jScrollPane2))
@@ -115,7 +125,8 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(botonCargar)
                     .addComponent(botonEjecutar)
                     .addComponent(saveButton)
-                    .addComponent(guardarcomoButton))
+                    .addComponent(guardarcomoButton)
+                    .addComponent(reporteButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -177,6 +188,10 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_guardarcomoButtonActionPerformed
 
+    private void reporteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteButtonActionPerformed
+        Utils.Reportes.generarReportes();
+    }//GEN-LAST:event_reporteButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -220,6 +235,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton reporteButton;
     private javax.swing.JButton saveButton;
     private javax.swing.JTextArea textoEntrada;
     // End of variables declaration//GEN-END:variables

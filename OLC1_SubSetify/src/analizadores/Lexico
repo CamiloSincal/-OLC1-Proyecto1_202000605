@@ -1,5 +1,6 @@
 package analizadores;
 import java_cup.runtime.Symbol; 
+import java.util.HashMap;
 
 %% 
 %class Lexico
@@ -81,4 +82,13 @@ MIN=[a-z]
 . {
     System.out.println("Este es un error lexico: "+yytext()+
     ", en la linea: "+yyline+", en la columna: "+yychar);
+
+    
+    HashMap<String,String> nuevoError = new HashMap<>();
+    nuevoError.put("lexema",String.valueOf(yytext()));
+    nuevoError.put("descripcion","Error Léxico");
+    nuevoError.put("linea",String.valueOf(yyline));
+    nuevoError.put("columna",String.valueOf(yychar));
+
+    Utils.Reportes.addError(nuevoError);
 }

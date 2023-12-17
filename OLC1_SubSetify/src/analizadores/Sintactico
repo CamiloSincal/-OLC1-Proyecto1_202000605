@@ -1,15 +1,12 @@
-/*
- * Ejemplo desarrollado por Erick Navarro
- * Blog: e-navarro.blogspot.com
- * Julio - 2018
- */
-
 package analizadores; 
 import java_cup.runtime.*;
+import java.util.HashMap;
+
 import Utils.ResultadoParser;
 import Utils.Nodo;
 import Utils.arbol;
 import Utils.cmdGraphviz;
+import Utils.Reportes;
 
 parser code
 {:
@@ -68,7 +65,7 @@ precedence left MAS,MENOS;
 precedence left POR,DIVIDIDO;
 precedence right UMENOS; 
 
-start with ini; 
+start with ini;
 
 ini::=instrucciones{:resultadoParser.setMensaje("COMPILADO CORRECTAMENTE :)");:};
 
@@ -79,23 +76,62 @@ instrucciones ::=
 ; 
 
 instruccion ::= 
-   LLAVIZQ deconjunto decregex LLAVDER
+   LLAVIZQ:t1 deconjunto decregex LLAVDER:t2 {:
+                                            Utils.Reportes.addToken(String.valueOf(t1),"LLAVIZQ",String.valueOf(t1left),String.valueOf(t1right));
+                                            Utils.Reportes.addToken(String.valueOf(t2),"LLAVDER",String.valueOf(t2left),String.valueOf(t2right));
+                                        :}
 ;
 
 deconjunto ::=
-      deconjunto INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN valoresconjunto PTCOMA {::}
-    | deconjunto INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA {::}
-    | INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN valoresconjunto PTCOMA {::}
-    | INICONJUNTO DPUNTOS IDENTIFICADOR ASIGN listavalores PTCOMA {::}
+      deconjunto INICONJUNTO:t1 DPUNTOS:t2 IDENTIFICADOR:t3 ASIGN:t4 valoresconjunto PTCOMA:t5 {:
+                                                                                    Utils.Reportes.addToken(String.valueOf(t1),"INICONJUNTO",String.valueOf(t1left),String.valueOf(t1right));
+                                                                                    Utils.Reportes.addToken(String.valueOf(t2),"DPUNTOS",String.valueOf(t2left),String.valueOf(t2right));
+                                                                                    Utils.Reportes.addToken(String.valueOf(t3),"IDENTIFICADOR",String.valueOf(t3left),String.valueOf(t3right));
+                                                                                    Utils.Reportes.addToken(String.valueOf(t4),"ASIGN",String.valueOf(t4left),String.valueOf(t4right));
+                                                                                    Utils.Reportes.addToken(String.valueOf(t5),"PTCOMA",String.valueOf(t5left),String.valueOf(t5right));
+                                                                                 :}
+    | deconjunto INICONJUNTO:t1 DPUNTOS:t2 IDENTIFICADOR:t3 ASIGN:t4 listavalores PTCOMA:t5 {:
+                                                                                Utils.Reportes.addToken(String.valueOf(t1),"INICONJUNTO",String.valueOf(t1left),String.valueOf(t1right));
+                                                                                Utils.Reportes.addToken(String.valueOf(t2),"DPUNTOS",String.valueOf(t2left),String.valueOf(t2right));
+                                                                                Utils.Reportes.addToken(String.valueOf(t3),"IDENTIFICADOR",String.valueOf(t3left),String.valueOf(t3right));
+                                                                                Utils.Reportes.addToken(String.valueOf(t4),"ASIGN",String.valueOf(t4left),String.valueOf(t4right));
+                                                                                Utils.Reportes.addToken(String.valueOf(t5),"PTCOMA",String.valueOf(t5left),String.valueOf(t5right));
+                                                                             :}
+    | INICONJUNTO:t1 DPUNTOS:t2 IDENTIFICADOR:t3 ASIGN:t4 valoresconjunto PTCOMA:t5 {:
+                                                                    Utils.Reportes.addToken(String.valueOf(t1),"INICONJUNTO",String.valueOf(t1left),String.valueOf(t1right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t2),"DPUNTOS",String.valueOf(t2left),String.valueOf(t2right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t3),"IDENTIFICADOR",String.valueOf(t3left),String.valueOf(t3right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t4),"ASIGN",String.valueOf(t4left),String.valueOf(t4right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t5),"PTCOMA",String.valueOf(t5left),String.valueOf(t5right));
+                                                                 :}
+    | INICONJUNTO:t1 DPUNTOS:t2 IDENTIFICADOR:t3 ASIGN:t4 listavalores PTCOMA:t5 {:
+                                                                    Utils.Reportes.addToken(String.valueOf(t1),"INICONJUNTO",String.valueOf(t1left),String.valueOf(t1right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t2),"DPUNTOS",String.valueOf(t2left),String.valueOf(t2right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t3),"IDENTIFICADOR",String.valueOf(t3left),String.valueOf(t3right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t4),"ASIGN",String.valueOf(t4left),String.valueOf(t4right));
+                                                                    Utils.Reportes.addToken(String.valueOf(t5),"PTCOMA",String.valueOf(t5left),String.valueOf(t5right));
+                                                                 :}
 ;
 
 decregex ::=
-      decregex IDENTIFICADOR ASIGN regex:a PTCOMA {:
+      decregex IDENTIFICADOR:t1 ASIGN:t2 regex:a PTCOMA:t3 {:
+                                                    //TOKENS A REPORTE
+                                                    Utils.Reportes.addToken(String.valueOf(t1),"IDENTIFICADOR",String.valueOf(t1left),String.valueOf(t1right));
+                                                    Utils.Reportes.addToken(String.valueOf(t2),"ASIGN",String.valueOf(t2left),String.valueOf(t2right));
+                                                    Utils.Reportes.addToken(String.valueOf(t3),"PTCOMA",String.valueOf(t3left),String.valueOf(t3right));
+                                                                    
+                                                    //GENERACION DEL ÁRBOL DE LA EXPRESION REGULAR
                                                     arbol nuevo_arbol = new arbol();
                                                     nuevo_arbol.raiz = a;
                                                     nuevo_arbol.generarDot(nuevo_arbol.raiz);
                                                     :}
-    | IDENTIFICADOR ASIGN regex:a PTCOMA {:
+    | IDENTIFICADOR:t1 ASIGN:t2 regex:a PTCOMA:t3 {:
+                                        //TOKENS A REPORTE
+                                        Utils.Reportes.addToken(String.valueOf(t1),"IDENTIFICADOR",String.valueOf(t1left),String.valueOf(t1right));
+                                        Utils.Reportes.addToken(String.valueOf(t2),"ASIGN",String.valueOf(t2left),String.valueOf(t2right));
+                                        Utils.Reportes.addToken(String.valueOf(t3),"PTCOMA",String.valueOf(t3left),String.valueOf(t3right));
+                                                                    
+                                        //GENERACION DEL ÁRBOL DE LA EXPRESION REGULAR
                                         arbol nuevo_arbol = new arbol();
                                         nuevo_arbol.raiz = a;
                                         nuevo_arbol.generarDot(nuevo_arbol.raiz);
@@ -119,7 +155,10 @@ regex ::=
                                 nuevo_nodo.derecho = hijo_derecho;
                                 RESULT = nuevo_nodo;
                     :}
-    |   PARIZQ multvar:a regex:b regex:c PARDER{:
+    |   PARIZQ:t1 multvar:a regex:b regex:c PARDER:t2{:
+                                Utils.Reportes.addToken(String.valueOf(t1),"PARIZQ",String.valueOf(t1left),String.valueOf(t1right));
+                                Utils.Reportes.addToken(String.valueOf(t2),"PARDER",String.valueOf(t2left),String.valueOf(t2right));
+
                                 Nodo nuevo_nodo = new Nodo(String.valueOf(a));
                                 Nodo hijo_izquierdo = b;
                                 Nodo hijo_derecho = c;
@@ -128,7 +167,10 @@ regex ::=
                                 nuevo_nodo.derecho = hijo_derecho;
                                 RESULT = nuevo_nodo;
                               :}
-    |   PARIZQ unavar:a regex:b PARDER{:
+    |   PARIZQ:t1 unavar:a regex:b PARDER:t2{:
+                                Utils.Reportes.addToken(String.valueOf(t1),"PARIZQ",String.valueOf(t1left),String.valueOf(t1right));
+                                Utils.Reportes.addToken(String.valueOf(t2),"PARDER",String.valueOf(t2left),String.valueOf(t2right));
+
                                 Nodo nuevo_nodo = new Nodo(String.valueOf(a));
                                 Nodo hijo_derecho = b;
                                 
@@ -143,72 +185,83 @@ regex ::=
                     Nodo nuevo_nodo = new Nodo(String.valueOf(a));
                     RESULT = nuevo_nodo;
                 :}
-    |   COMILLAS signos:a COMILLAS{:
+    |   COMILLAS:t1 signos:a COMILLAS:t2{:
+                                Utils.Reportes.addToken(String.valueOf(t1),"COMILLAS",String.valueOf(t1left),String.valueOf(t1right));
+                                Utils.Reportes.addToken(String.valueOf(t2),"COMILLAS",String.valueOf(t2left),String.valueOf(t2right));
+
                                     Nodo nuevo_nodo = new Nodo(String.valueOf(a));
                                     RESULT = nuevo_nodo;
                                 :}
 ;
 
 terminos ::=
-        IDENTIFICADOR:a {:RESULT = a;:}
-    |   PARIZQ IDENTIFICADOR:a PARDER {:RESULT = a;:}
-    |   GUIONB:a {:RESULT = a;:}
-    |   PARIZQ GUIONB:a PARDER {:RESULT = a;:}
+        IDENTIFICADOR:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"IDENTIFICADOR",String.valueOf(aleft),String.valueOf(aright));:}
+    |   PARIZQ:t1 IDENTIFICADOR:a PARDER:t3 {:RESULT = a;
+                                Utils.Reportes.addToken(String.valueOf(t1),"PARIZQ",String.valueOf(t1left),String.valueOf(t1right));
+                                Utils.Reportes.addToken(String.valueOf(a),"IDENTIFICADOR",String.valueOf(aleft),String.valueOf(aright));
+                                Utils.Reportes.addToken(String.valueOf(t3),"PARDER",String.valueOf(t3left),String.valueOf(t3right));
+                                :}
+    |   GUIONB:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"GUIONB",String.valueOf(aleft),String.valueOf(aright));:}
+    |   PARIZQ:t1 GUIONB:a PARDER:t3 {:RESULT = a;
+                                Utils.Reportes.addToken(String.valueOf(t1),"PARIZQ",String.valueOf(t1left),String.valueOf(t1right));
+                                Utils.Reportes.addToken(String.valueOf(a),"GUIONB",String.valueOf(aleft),String.valueOf(aright));
+                                Utils.Reportes.addToken(String.valueOf(t3),"PARDER",String.valueOf(t3left),String.valueOf(t3right));
+                                :}
 ;
 
 unavar ::=
-        POR:a {:RESULT = a;:}
-    |   MAS:a {:RESULT = a;:}
-    |   INTER:a {:RESULT = a;:}
+        POR:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"POR",String.valueOf(aleft),String.valueOf(aright));:}
+    |   MAS:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"MAS",String.valueOf(aleft),String.valueOf(aright));:}
+    |   INTER:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"INTER",String.valueOf(aleft),String.valueOf(aright));:}
 ;
 
 multvar ::=
-        PUNTO:a {:RESULT = a;:}
-    |   ORSIGN:a {:RESULT = a;:}
+        PUNTO:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PUNTO",String.valueOf(aleft),String.valueOf(aright));:}
+    |   ORSIGN:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"ORSIGN",String.valueOf(aleft),String.valueOf(aright));:}
 ;
 
 valoresconjunto ::=
-    expresion DECRANGO expresion
-    |signos DECRANGO signos
+    expresion DECRANGO:a expresion {:Utils.Reportes.addToken(String.valueOf(a),"DECRANGO",String.valueOf(aleft),String.valueOf(aright));:}
+    |signos DECRANGO:a signos {:Utils.Reportes.addToken(String.valueOf(a),"DECRANGO",String.valueOf(aleft),String.valueOf(aright));:}
 ;
 
 listavalores ::=
-      listavalores COMA expresion
+      listavalores COMA:a expresion {:Utils.Reportes.addToken(String.valueOf(a),"COMA",String.valueOf(aleft),String.valueOf(aright));:}
     | expresion
-    | listavalores COMA signos
+    | listavalores COMA:a signos {:Utils.Reportes.addToken(String.valueOf(a),"COMA",String.valueOf(aleft),String.valueOf(aright));:}
     | signos
 ;
 
 expresion  ::= 
-    ENTERO:a {:RESULT = a;:}                               
- |  DECIMAL:a {:RESULT = a;:}            
- |  LETRA:a {:RESULT = a;:}                      
+    ENTERO:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"ENTERO",String.valueOf(aleft),String.valueOf(aright));:}                               
+ |  DECIMAL:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"DECIMAL",String.valueOf(aleft),String.valueOf(aright));:}            
+ |  LETRA:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"LETRA",String.valueOf(aleft),String.valueOf(aright));:}                      
 ;
         
 signos ::=
-    EXCLAMACION:a {:RESULT = a;:}   
- |  COMILLAS:a {:RESULT = a;:}   
- |  NUMERAL:a {:RESULT = a;:}   
- |  DOLAR:a {:RESULT = a;:}   
- |  PORC:a {:RESULT = a;:}   
- |  AMPER:a {:RESULT = a;:}   
- |  COMSIMPLE:a {:RESULT = a;:}   
- |  PARIZQ:a {:RESULT = a;:}   
- |  PARDER:a {:RESULT = a;:}   
- |  POR:a {:RESULT = a;:}   
- |  MAS:a {:RESULT = a;:}   
- |  COMA:a {:RESULT = a;:}   
- |  MENOS:a {:RESULT = a;:}   
- |  PUNTO:a {:RESULT = a;:}   
- |  BARRA:a {:RESULT = a;:}   
- |  DPUNTOS:a {:RESULT = a;:}   
- |  PTCOMA:a {:RESULT = a;:}   
- |  MENORQUE:a {:RESULT = a;:}   
- |  MAYORQUE:a {:RESULT = a;:}   
- |  IGUAL:a {:RESULT = a;:}   
- |  INTER:a {:RESULT = a;:}   
- |  ACENTO:a {:RESULT = a;:}   
- |  ORSIGN:a {:RESULT = a;:}   
- |  LLAVIZQ:a {:RESULT = a;:}   
- |  LLAVDER:a {:RESULT = a;:}   
+    EXCLAMACION:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"EXCLAMACION",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  COMILLAS:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"COMILLAS",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  NUMERAL:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"NUMERAL",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  DOLAR:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"DOLAR",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  PORC:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PORC",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  AMPER:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"AMPER",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  COMSIMPLE:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"COMSIMPLE",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  PARIZQ:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PARIZQ",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  PARDER:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PARDER",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  POR:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"POR",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  MAS:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"MAS",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  COMA:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"COMA",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  MENOS:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"MENOS",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  PUNTO:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PUNTO",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  BARRA:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"BARRA",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  DPUNTOS:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"DPUNTOS",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  PTCOMA:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"PTCOMA",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  MENORQUE:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"MENORQUE",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  MAYORQUE:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"MAYORQUE",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  IGUAL:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"IGUAL",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  INTER:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"INTER",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  ACENTO:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"ACENTO",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  ORSIGN:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"ORSIGN",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  LLAVIZQ:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"LLAVIZQ",String.valueOf(aleft),String.valueOf(aright));:}   
+ |  LLAVDER:a {:RESULT = a;Utils.Reportes.addToken(String.valueOf(a),"LLAVDER",String.valueOf(aleft),String.valueOf(aright));:}   
 ;
